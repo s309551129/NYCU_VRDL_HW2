@@ -1,0 +1,5 @@
+/data
+/yolov5/runs
+__pycache__
+*pt
+/answer.json
