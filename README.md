@@ -21,25 +21,37 @@ ${data}
   |  +- 117.png
   |  +- 162.png
   |  +- ...
+${yolov5}
+```
+You can run this command to split the training data into training set and validation set:
+```
+python3 split.py
 ```
 # Training
 To train the model, run this command:
 ```
-python3 ./yolov5/train.py 
+python3 ./yolov5/train.py --batch 64 --epoch 50 --data svhn.yaml --cfg yolov5m.yaml --weight yolov5m.pt
 ```
 # Evaluation
-If you want to evaluate a single model, run this command:
+If you want to detect the street numbers in testing images, run this command:
 ```
-python3 ./yolov5/detect.py 
+python3 ./yolov5/detect.py --weights {weight_path} --source ../data/test --save-txt --save-conf
 ```
 You can download pretrained weight here:
 ```
 https://drive.google.com/drive/folders/1Vg95zri9a8YvCqszL93trzC4SPEn9qG6
 ```
-After downing all pretrained weight, please put them into ```./weight``` folder.
+After detecting all testing images, you can use this command to get answer.json:
+```
+python3 submit.py
+```
+The inference.ipynb can be found below:
+```
+https://colab.research.google.com/drive/13nOlfNeLaJNwZC3ZUPBkzS-3oBcZmdpq
+```
 # Results
-mAP 0.5, 0.95: 0.407894 <br>
-Inference time per image: 0.103869 
+mAP 0.5, 0.95 => 0.407894 <br>
+Inference time per image => 0.103869
 # Reference
 Yolov5
 ```
